@@ -27,7 +27,7 @@ public class NettyServer {
             serverBootstrap.group(worker1, worker2)
                     .channel(NioServerSocketChannel.class)    //非阻塞模式
                     .option(ChannelOption.SO_BACKLOG, 128)
-                    .childHandler(new MyServerHandler());
+                    .childHandler(new MyChannelInitializer());
 
 
             ChannelFuture sync = serverBootstrap.bind(8001).sync();
@@ -36,11 +36,9 @@ public class NettyServer {
         } catch (InterruptedException e) {
             e.printStackTrace();
 
-
         } finally {
             worker1.shutdownGracefully();
             worker2.shutdownGracefully();
-
         }
     }
 }
