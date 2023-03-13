@@ -25,8 +25,6 @@ public class MyServerHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         //接收msg消息{与上一章节相比，此处已经不需要自己进行解码}
         System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + " 接收到消息：" + msg);
-
-        System.out.println("收到消息"+msg);
     }
 
     @Override
@@ -45,5 +43,6 @@ public class MyServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         System.out.println("出现异常");
+        cause.printStackTrace();
     }
 }
